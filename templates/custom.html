@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Анализ тональности отзыва</title>
+  <link href="{{url_for('static', filename='layout.css')}}" rel="stylesheet">  
+ </head>
+ <body>
+  <div id="container">
+   <header><h1>Анализ тональности произвольного текста</h1></header>
+   <nav>
+    <p><a href="custom">Произвольный текст</a></p>
+    <p><a href="samples">Контрольные примеры</a></p>    
+   </nav>
+   <article>
+    <h2>Введите текст отзыва:</h2>
+    <form action="{{ url_for('index_page') }}" method=post>
+		<div>			
+			<div style="float:left;width:100%;">
+				<textarea name="text" rows=5 style="width:100%;">{{ text }}</textarea>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+		<input type="submit" value="Оценить">   
+	</form>
+	<div>
+		<div style="float:left;width:auto;">
+			<h2>Тональность отзыва:</h2>
+		</div>
+		<div style="float:left;width:auto;padding-left: 10px;">
+			{{ prediction_message }}
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:left;width:auto;">
+			<h2>Предобработанный текст:</h2>
+		</div>
+		<div style="float:left;width:auto;padding-left: 10px;">
+			{{ preprocessed_text }}
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:top;width:auto;">
+			<h2>Признаки и веса:</h2>
+		</div>
+		<div style="float:top;width:auto;height:400px;overflow:auto;">
+			{% for feature_weight in feature_weights %}
+			<div style="float:top;width:auto;">
+				{{ feature_weight|safe }}
+			</div>
+			{% endfor %}
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+   </article>
+   <footer>&copy; Igor Bendrup</footer>
+  </div> 
+ </body>
+</html>

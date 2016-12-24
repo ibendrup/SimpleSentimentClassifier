@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Анализ тональности отзыва</title>
+  <link href="{{url_for('static', filename='layout.css')}}" rel="stylesheet">  
+ </head>
+ <body>
+  <div id="container">
+   <header><h1>Анализ тональности примера из тестового набора данных</h1></header>
+   <nav>
+    <p><a href="custom">Произвольный текст</a></p>
+    <p><a href="samples">Контрольные примеры</a></p>    
+   </nav>
+   <article>
+    <h2>Выберите пример из списка:</h2>    
+	<div>			
+		<div style="float:left;width:100%;height:600px;overflow:auto;">
+			{% for table in tables %}
+			{{ table|safe }}
+			{% endfor %}
+		</div>
+		<div style="clear:both;"></div>
+	</div>		
+   </article>
+   <footer>&copy; Igor Bendrup</footer>
+  </div> 
+ </body>
+</html>
